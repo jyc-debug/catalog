@@ -34,21 +34,25 @@
 }
 
 :root{
-  --night:   #0A1725;
-  --night-2: #0F2338;
-  --night-3: #16324E;
+  /* ▼ 2026-11-09 GYSafe 사이트와 톤 맞춤 — 남색·파랑·초록 (주황 계열 제거) */
+  --night:   #0A2142;
+  --night-2: #0D2D5C;
+  --night-3: #123C78;
   --ice:     #EFF5FA;
   --ice-2:   #E2ECF5;
   --frost:   #AFC9E0;
-  --amber:   #FFA22E;
-  --amber-d: #E07E00;
-  --eco:     #3F9D6C;
-  --eco-l:   #8FD3AE;
+  --amber:   #4CC777;   /* 어두운 바탕 위 강조색 (GYSafe 초록을 밝게) — 이름은 예전 그대로 둠 */
+  --amber-d: #1463D8;   /* 밝은 바탕 위 강조색 = GYSafe 파랑 */
+  --eco:     #2FA84F;   /* GYSafe 초록 */
+  --eco-l:   #8FDDA6;
+  --blue:    #1463D8;
+  --blue-deep:#0B3E8F;
+  --grad:    linear-gradient(120deg,#0B3E8F 0%,#1463D8 42%,#2FA84F 100%);   /* GYSafe 대표 그라데이션 */
   --ink:     #142230;
   --muted:   #5C7288;
   --line:    #D4E1EC;
   --line-dk: rgba(175,201,224,.16);
-  --disp: 'GmarketSans', 'Pretendard Variable', sans-serif;
+  --disp: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;   /* GYSafe와 같은 글꼴 */
   --body: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', 'Pretendard Variable', monospace;
 }
@@ -67,7 +71,7 @@ h1,h2,h3,h4{text-wrap:balance}
 
 /* ============ Header ============ */
 .hd{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
-.hd.on{background:rgba(10,23,37,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-dk)}
+.hd.on{background:rgba(10,33,66,.88);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line-dk)}
 .hd-in{max-width:1120px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-mark{font-family:var(--disp);font-weight:700;font-size:22px;color:#fff;letter-spacing:.02em}
@@ -78,19 +82,19 @@ h1,h2,h3,h4{text-wrap:balance}
 .nav{display:flex;align-items:center;gap:32px}
 .nav a{font-size:15.5px;font-weight:600;color:rgba(239,245,250,.8);transition:color .2s}
 .nav a:hover{color:#fff}
-.nav .cta{background:var(--amber);color:var(--night);padding:10px 20px;border-radius:8px;font-weight:700;transition:transform .2s,box-shadow .2s}
-.nav .cta:hover{color:var(--night);transform:translateY(-1px);box-shadow:0 6px 18px rgba(255,162,46,.35)}
+.nav .cta{background:var(--grad);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;transition:transform .2s,box-shadow .2s}
+.nav .cta:hover{color:#fff;transform:translateY(-1px);box-shadow:0 6px 18px rgba(20,99,216,.4)}
 @media(max-width:760px){.nav a:not(.cta){display:none}.logo-badge{display:none}}
 
 /* ============ Hero ============ */
 .hero{position:relative;min-height:100svh;background:
-  radial-gradient(1100px 520px at 78% 112%, rgba(255,162,46,.20), transparent 62%),
-  radial-gradient(900px 500px at 12% -10%, rgba(22,50,78,.9), transparent 70%),
-  linear-gradient(180deg,#0A1725 0%,#0C1C2E 55%,#0E2135 100%);
+  radial-gradient(1100px 520px at 78% 112%, rgba(47,168,79,.26), transparent 62%),
+  radial-gradient(900px 500px at 12% -10%, rgba(20,99,216,.55), transparent 70%),
+  linear-gradient(160deg,#0B3E8F 0%,#0A2A5E 55%,#0A2142 100%);
   display:flex;align-items:center;overflow:hidden;color:var(--ice)}
 #snow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero-glow{position:absolute;left:0;right:0;bottom:-140px;height:340px;pointer-events:none;
-  background:radial-gradient(50% 100% at 50% 100%, rgba(255,162,46,.22), transparent 70%);
+  background:radial-gradient(50% 100% at 50% 100%, rgba(47,168,79,.24), transparent 70%);
   animation:beacon 5s ease-in-out infinite}
 @keyframes beacon{0%,100%{opacity:.5}50%{opacity:1}}
 .hero-in{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:140px 24px 120px;width:100%}
@@ -101,13 +105,13 @@ h1,h2,h3,h4{text-wrap:balance}
 .hero p.lead{font-size:clamp(18px,1.9vw,21px);color:rgba(239,245,250,.82);max-width:600px;margin-bottom:40px;line-height:1.85}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:72px}
 .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15.5px;padding:15px 28px;border-radius:10px;transition:transform .2s,box-shadow .2s,background .2s}
-.btn-amber{background:var(--amber);color:var(--night)}
-.btn-amber:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,162,46,.4)}
+.btn-amber{background:var(--grad);color:#fff}
+.btn-amber:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(20,99,216,.45)}
 .btn-ghost{border:1px solid rgba(175,201,224,.35);color:var(--ice)}
 .btn-ghost:hover{background:rgba(175,201,224,.1);transform:translateY(-2px)}
 .hero-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-dk);border:1px solid var(--line-dk);border-radius:14px;overflow:hidden;max-width:960px}
-.chip-eco{background:rgba(63,157,108,.16)}
-.chip-eco:hover{background:rgba(63,157,108,.24)}
+.chip-eco{background:rgba(47,168,79,.18)}
+.chip-eco:hover{background:rgba(47,168,79,.26)}
 .chip{background:rgba(15,35,56,.6);backdrop-filter:blur(6px);padding:18px 20px;transition:background .25s}
 .chip:hover{background:rgba(22,50,78,.75)}
 .chip .c-en{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--amber);text-transform:uppercase;display:block;margin-bottom:5px}
@@ -142,7 +146,7 @@ section{padding:110px 0}
 .card-feat h3{font-family:var(--disp);font-weight:700;font-size:33px;margin-bottom:6px}
 .card-feat .type{font-size:16.5px;color:var(--muted);margin-bottom:20px}
 .card-feat .tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-.card-feat .tag-eco{font-size:14.5px;font-weight:700;padding:7px 14px;border-radius:8px;background:rgba(63,157,108,.12);color:var(--eco)}
+.card-feat .tag-eco{font-size:14.5px;font-weight:700;padding:7px 14px;border-radius:8px;background:rgba(47,168,79,.12);color:var(--eco)}
 .card-feat dl{display:grid;gap:15px}
 .card-feat dt{font-size:14px;font-weight:800;letter-spacing:.1em;color:var(--eco);margin-bottom:4px}
 .card-feat dd{font-size:17px;color:#33465A;line-height:1.82}
@@ -184,7 +188,7 @@ section{padding:110px 0}
 .card dl{display:grid;gap:14px}
 .card dt{font-size:14px;font-weight:800;letter-spacing:.1em;color:var(--amber-d);margin-bottom:4px}
 .card dd{font-size:17px;color:#33465A;line-height:1.82}
-.card dd b{color:var(--ink);font-weight:800;background:linear-gradient(transparent 64%, rgba(255,162,46,.4) 64%)}
+.card dd b{color:var(--ink);font-weight:800;background:linear-gradient(transparent 64%, rgba(47,168,79,.3) 64%)}
 
 /* ============ Compare ============ */
 .compare{background:#fff}
@@ -198,7 +202,7 @@ td .p-name{font-weight:800;font-size:17px}
 td .p-sub{font-size:14.5px;color:var(--muted)}
 .pos{display:inline-block;font-size:14px;font-weight:700;border-radius:7px;padding:4px 10px}
 .pos.std{background:var(--ice-2);color:var(--ink)}
-.pos.prm{background:rgba(255,162,46,.15);color:var(--amber-d)}
+.pos.prm{background:rgba(20,99,216,.1);color:var(--amber-d)}
 .pos.raw{background:#EAF3EA;color:#2E6B3A}
 .pos.road{background:#E8EEF8;color:#2B4E8C}
 
@@ -211,7 +215,7 @@ td .p-sub{font-size:14.5px;color:var(--muted)}
 @media(max-width:860px){.data-grid{grid-template-columns:1fr}}
 .panel-wide{grid-column:1/-1;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
 @media(max-width:860px){.panel-wide{grid-template-columns:1fr;gap:26px}}
-.bar i.eco{background:linear-gradient(90deg,#2E7A52,var(--eco-l))}
+.bar i.eco{background:linear-gradient(90deg,#137A38,var(--eco-l))}
 .eco-note{border-left:3px solid var(--eco);padding-left:22px}
 .eco-note p{font-size:16.5px;color:rgba(199,218,235,.92);line-height:1.85}
 .eco-note p b{color:var(--eco-l)}
@@ -336,7 +340,7 @@ footer{background:var(--night);color:rgba(175,201,224,.78);padding:44px 0;font-s
         <div class="fc-media">
         <div class="photo">
           <div class="ph-glyph">
-            <svg viewBox="0 0 52 52" fill="none"><path d="M26 8c8 7 13 13.5 13 21a13 13 0 0 1-26 0c0-7.5 5-14 13-21z" stroke="#8FD3AE" stroke-width="2.4" stroke-linejoin="round"/><path d="M26 40V22M26 28l6-5M26 33l-6-5" stroke="#FFA22E" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 52 52" fill="none"><path d="M26 8c8 7 13 13.5 13 21a13 13 0 0 1-26 0c0-7.5 5-14 13-21z" stroke="#8FD3AE" stroke-width="2.4" stroke-linejoin="round"/><path d="M26 40V22M26 28l6-5M26 33l-6-5" stroke="#4CC777" stroke-width="2.2" stroke-linecap="round"/></svg>
           </div>
           <img src="img/eco.jpg" alt="친환경 제설제 톤백" loading="lazy" style="position:relative;z-index:1" onerror="this.remove()">
         </div>
@@ -360,7 +364,7 @@ footer{background:var(--night);color:rgba(175,201,224,.78);padding:44px 0;font-s
         <div class="photo">
           <span class="origin">중국산</span>
           <div class="ph-glyph">
-            <svg viewBox="0 0 52 52" fill="none"><g stroke="#FFA22E" stroke-width="2.4" stroke-linecap="round"><path d="M26 6v40M8.7 16l34.6 20M8.7 36l34.6-20"/><path d="M26 6l-4 6h8zM26 46l-4-6h8z" fill="#FFA22E"/></g><g stroke="#AFC9E0" stroke-width="1.6" stroke-linecap="round" opacity=".8"><path d="M20 12l6 4 6-4M20 40l6-4 6 4M13 20l5 6-5 6M39 20l-5 6 5 6"/></g></svg>
+            <svg viewBox="0 0 52 52" fill="none"><g stroke="#4CC777" stroke-width="2.4" stroke-linecap="round"><path d="M26 6v40M8.7 16l34.6 20M8.7 36l34.6-20"/><path d="M26 6l-4 6h8zM26 46l-4-6h8z" fill="#4CC777"/></g><g stroke="#AFC9E0" stroke-width="1.6" stroke-linecap="round" opacity=".8"><path d="M20 12l6 4 6-4M20 40l6-4 6 4M13 20l5 6-5 6M39 20l-5 6 5 6"/></g></svg>
           </div>
           <img src="img/flake.jpg" alt="염화칼슘 편상형(후레이크) 접사" loading="lazy" style="position:relative;z-index:1" onerror="this.remove()">
         </div>
@@ -379,7 +383,7 @@ footer{background:var(--night);color:rgba(175,201,224,.78);padding:44px 0;font-s
         <div class="photo">
           <span class="origin">중국산</span>
           <div class="ph-glyph">
-            <svg viewBox="0 0 52 52" fill="none"><circle cx="18" cy="18" r="7.5" stroke="#FFA22E" stroke-width="2.4"/><circle cx="35" cy="24" r="6" stroke="#AFC9E0" stroke-width="2"/><circle cx="22" cy="37" r="6.8" stroke="#FFA22E" stroke-width="2.4"/><circle cx="38" cy="39" r="4.4" stroke="#AFC9E0" stroke-width="2"/><circle cx="15.5" cy="16" r="1.8" fill="#EFF5FA"/><circle cx="19.5" cy="34.5" r="1.6" fill="#EFF5FA"/></svg>
+            <svg viewBox="0 0 52 52" fill="none"><circle cx="18" cy="18" r="7.5" stroke="#4CC777" stroke-width="2.4"/><circle cx="35" cy="24" r="6" stroke="#AFC9E0" stroke-width="2"/><circle cx="22" cy="37" r="6.8" stroke="#4CC777" stroke-width="2.4"/><circle cx="38" cy="39" r="4.4" stroke="#AFC9E0" stroke-width="2"/><circle cx="15.5" cy="16" r="1.8" fill="#EFF5FA"/><circle cx="19.5" cy="34.5" r="1.6" fill="#EFF5FA"/></svg>
           </div>
           <img src="img/bead.jpg" alt="염화칼슘 비드형(구슬) 접사" loading="lazy" style="position:relative;z-index:1" onerror="this.remove()">
         </div>
@@ -400,7 +404,7 @@ footer{background:var(--night);color:rgba(175,201,224,.78);padding:44px 0;font-s
       <article class="card rv">
         <div class="photo">
           <div class="ph-glyph">
-            <svg viewBox="0 0 52 52" fill="none"><g stroke="#AFC9E0" stroke-width="2"><path d="M14 20l8-5 8 5v10l-8 5-8-5z"/><path d="M14 20l8 5 8-5M22 25v10"/></g><g stroke="#FFA22E" stroke-width="2.2"><path d="M30 30l6-3.5 6 3.5v7l-6 3.5-6-3.5z"/><path d="M30 30l6 3.5 6-3.5M36 33.5v7"/></g></svg>
+            <svg viewBox="0 0 52 52" fill="none"><g stroke="#AFC9E0" stroke-width="2"><path d="M14 20l8-5 8 5v10l-8 5-8-5z"/><path d="M14 20l8 5 8-5M22 25v10"/></g><g stroke="#4CC777" stroke-width="2.2"><path d="M30 30l6-3.5 6 3.5v7l-6 3.5-6-3.5z"/><path d="M30 30l6 3.5 6-3.5M36 33.5v7"/></g></svg>
           </div>
           <img src="img/salt-cn.jpg" alt="중국산 건조소금 결정 접사" loading="lazy" style="position:relative;z-index:1" onerror="this.remove()">
         </div>
@@ -418,7 +422,7 @@ footer{background:var(--night);color:rgba(175,201,224,.78);padding:44px 0;font-s
       <article class="card rv d1">
         <div class="photo">
           <div class="ph-glyph">
-            <svg viewBox="0 0 52 52" fill="none"><path d="M20 44L26 8h0l6 36" stroke="#AFC9E0" stroke-width="2.2" stroke-linecap="round"/><path d="M26 12v5M26 23v5M26 34v5" stroke="#FFA22E" stroke-width="2.6" stroke-linecap="round"/><path d="M12 44h28" stroke="#AFC9E0" stroke-width="2.2" stroke-linecap="round"/></svg>
+            <svg viewBox="0 0 52 52" fill="none"><path d="M20 44L26 8h0l6 36" stroke="#AFC9E0" stroke-width="2.2" stroke-linecap="round"/><path d="M26 12v5M26 23v5M26 34v5" stroke="#4CC777" stroke-width="2.6" stroke-linecap="round"/><path d="M12 44h28" stroke="#AFC9E0" stroke-width="2.2" stroke-linecap="round"/></svg>
           </div>
           <img src="img/salt-in.jpg" alt="인도산 건조소금 결정 접사" loading="lazy" style="position:relative;z-index:1" onerror="this.remove()">
         </div>
