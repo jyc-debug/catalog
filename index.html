@@ -183,6 +183,7 @@ fieldset.fld{border:0}
 .prod:hover{box-shadow:0 18px 40px -22px rgba(10,33,66,.45);transform:translateY(-3px)}
 .media{position:relative;aspect-ratio:16/10;background:#2A3036;overflow:hidden}
 .media img,.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media video{opacity:0;transition:opacity .9s cubic-bezier(.4,0,.2,1)}.media video.on{opacity:1}
 .media .tagline{position:absolute;left:12px;top:12px;background:rgba(10,33,66,.88);color:#fff;font-size:var(--fs-cap);font-weight:700;line-height:1;padding:8px 10px;border-radius:4px}
 html[data-gate-b="2"] .prod.b .tagline{background:var(--green)}
 .media .ph-note{position:absolute;right:10px;bottom:8px;font-size:var(--fs-cap);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8)}
@@ -763,8 +764,8 @@ var SITE = {
 
   PHOTO_A: 'img/product-a-bead.jpg',
   PHOTO_B: 'img/product-b-granule.jpg',
-  LOOP_A: '',                            /* Blender 루프 준비 중 — 완성되면 'video/loop-a-beads.mp4' */
-  LOOP_B: '',                            /* 완성되면 'video/loop-b-granules.mp4' */
+  LOOP_A: 'video/loop-a-beads.mp4',      /* Blender 연출 영상 4초 반복 (mp4 먼저, 안 되면 같은 이름 .webm) */
+  LOOP_B: 'video/loop-b-granules.mp4',   /* Blender 연출 영상 */
   PHOTO_IS_REAL: false,
   HERO_VIDEO: 'video/hero.mp4',          /* Google Flow(Veo 3.1 Fast) 연출 영상, 4.8초 반복. 비우면 사진 4장 연출 */
 
@@ -927,9 +928,12 @@ var SITE = {
     var v = document.createElement('video');
     v.muted = true; v.loop = true; v.playsInline = true; v.preload = 'none'; v.setAttribute('aria-hidden', 'true');
     v.poster = img.src;
+    /* 제품 영상은 mp4(가벼움)를 먼저, mp4를 못 트는 브라우저만 같은 이름의 .webm.
+       두 파일 모두 실패해야(마지막 source 오류) 영상 칸을 지우고 사진만 남깁니다.
+       재생이 시작되면 사진 위로 서서히 나타납니다(.on). */
     var webm = src.replace(/\.mp4$/, '.webm');
-    v.innerHTML = '<source src="' + esc(webm) + '" type="video/webm"><source src="' + esc(src) + '" type="video/mp4">';
-    v.addEventListener('error', function(){ v.remove(); }, true);
+    v.innerHTML = '<source src="' + esc(src) + '" type="video/mp4"><source src="' + esc(webm) + '" type="video/webm">';
+    v.addEventListener('playing', function(){ v.classList.add('on'); });
     v.querySelector('source:last-child').addEventListener('error', function(){ v.remove(); });
     box.insertBefore(v, img.nextSibling);
     if ('IntersectionObserver' in window) {
