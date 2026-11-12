@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>보아(V.o.A) 제설제 20kg 견적·배송 안내 — 관공서·아파트 | (주)비전온에이아이</title>
-<meta name="description" content="서울·경기·인천 관공서·공공기관과 아파트 관리사무소에 20kg 포대 제설제 두 가지를 배송합니다. 견적 요청서를 남겨 주시면 결재용 견적서를 카카오톡·문자·이메일로 보내 드립니다.">
+<meta name="description" content="서울·경기·인천 관공서·공공기관과 아파트 관리사무소에 20kg 포대 제설제 두 가지를 배송합니다. 견적 요청서를 남겨 주시면 결재용 견적서를 이메일로 보내 드립니다.">
 <!-- ═══ 카카오톡·문자 미리보기 카드 (제목·설명·사진) ═══
      공유 사진을 바꾸면 파일 이름도 바꾸세요. 카카오톡은 같은 주소의 사진을 오래 기억합니다.
      홈페이지 최종 주소가 정해지면 canonical·og:url·og:image 세 줄의 주소를 함께 바꾸세요. -->
@@ -14,7 +14,7 @@
 <meta property="og:title" content="관공서·아파트 제설제 20kg 견적·배송 안내 | 보아(V.o.A)">
 <meta property="og:description" content="서울·경기·인천 관공서·공공기관과 아파트 관리사무소에 20kg 제설제를 배송합니다. 견적 요청서를 남겨 주시면 결재용 견적서를 보내 드립니다.">
 <meta property="og:url" content="https://jyc-debug.github.io/catalog/">
-<meta property="og:image" content="https://jyc-debug.github.io/catalog/img/og-deicer-gov-1112.jpg">
+<meta property="og:image" content="https://jyc-debug.github.io/catalog/img/og-deicer-mail-1112.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="눈 내린 건물 앞 보도 연출 사진과 '관공서·아파트 제설제 20kg 견적·배송 안내' 문구">
@@ -132,7 +132,7 @@ main{padding-top:var(--hd)}
 .qcard .q-sub{font-size:var(--fs-cap);color:var(--sub);margin-bottom:16px}
 .f-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .f-grid .full{grid-column:1 / -1}
-.f-grid .w2{grid-column:span 2}
+.f-grid .w2{grid-column:span 2}.f-grid .w3{grid-column:1 / -1}
 .fld label,.fld legend{display:block;font-size:var(--fs-cap);font-weight:700;color:var(--navy);margin-bottom:5px}
 .fld label i,.fld legend i{font-style:normal;font-weight:500;color:var(--sub)}
 .fld input,.fld textarea,.fld select{width:100%;min-height:48px;padding:10px 12px;border:1.5px solid #B7C8D8;border-radius:6px;background:#fff;font-size:var(--fs-body)}
@@ -340,7 +340,7 @@ footer a{color:#fff}
   .photo-tag{bottom:auto;top:10px;right:12px}
   .qcard{padding:20px 16px 16px}
   .f-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .f-grid > .fld:nth-child(-n+3),.f-grid .w2{grid-column:1 / -1}
+  .f-grid > .fld:nth-child(-n+3),.f-grid .w2,.f-grid .mail{grid-column:1 / -1}
   .sec{padding:44px 0}
   .sec-hd{display:block;margin-bottom:20px}
   /* 제품 두 장은 옆으로 밀어 넘기기 (세로 길이 절반) */
@@ -440,7 +440,7 @@ footer a{color:#fff}
     <div>
       <p class="eyebrow">서울·경기·인천 관공서·공공기관 · 아파트 관리사무소</p>
       <h1 id="hero-title">관공서·아파트 제설제 20kg,<br><em>결재용 견적서</em>로 받아 보세요</h1>
-      <p class="lead">제설제 두 가지를 20kg 포대로 기관·단지까지 배송합니다. <span class="nb">견적 요청서에</span> 기관·단지명과 수량을 남겨 주시면 <span class="nb">공급자 정보·부가세가</span> 적힌 견적서를 카카오톡·문자·이메일로 보내 드립니다.</p>
+      <p class="lead">제설제 두 가지를 20kg 포대로 기관·단지까지 배송합니다. <span class="nb">견적 요청서에</span> 기관·단지명과 수량을 남겨 주시면 <span class="nb">공급자 정보·부가세가</span> 적힌 견적서를 이메일로 보내 드립니다.</p>
       <div class="btns">
         <a class="btn btn-white" href="#products"><svg class="ico" aria-hidden="true"><use href="#i-package"/></svg>제품 2종 보기</a>
         <a class="btn btn-ghost" data-mail href="mailto:voa@visiononai.co.kr"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>이메일 보내기</a>
@@ -449,7 +449,7 @@ footer a{color:#fff}
       <ul class="facts" role="list">
         <li><svg class="ico" aria-hidden="true"><use href="#i-package"/></svg>20kg 포대 단위</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-receipt"/></svg>결재에 붙이는 견적서</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-message"/></svg>카톡·문자로 받기</li>
+        <li><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>이메일로 견적서 받기</li>
       </ul>
     </div>
 
@@ -462,12 +462,11 @@ footer a{color:#fff}
         <div class="f-grid">
           <div class="fld"><label for="f-apt">기관·단지명 *</label><input id="f-apt" name="기관·단지명" required autocomplete="organization" placeholder="예: ○○구청"></div>
           <div class="fld"><label for="f-name">담당자 *</label><input id="f-name" name="담당자" required autocomplete="name" placeholder="성함·직함"></div>
-          <div class="fld"><label for="f-tel">연락처 *</label><input id="f-tel" name="연락처" type="tel" required inputmode="tel" autocomplete="tel" placeholder="견적서 받을 번호"></div>
+          <div class="fld"><label for="f-tel">연락처 *</label><input id="f-tel" name="연락처" type="tel" required inputmode="tel" autocomplete="tel" placeholder="배송 협의용"></div>
           <div class="fld qty"><label for="f-qa" data-a-short>염화칼슘 비드</label><input id="f-qa" name="제품A_수량(포)" type="number" min="0" step="1" inputmode="numeric" placeholder="수량"></div>
           <div class="fld qty"><label for="f-qb" data-b-short>제설제</label><input id="f-qb" name="제품B_수량(포)" type="number" min="0" step="1" inputmode="numeric" placeholder="수량"></div>
-          <div class="fld"><label for="f-how">받을 방법</label><select id="f-how" name="받을방법"><option>카카오톡</option><option>문자</option><option>이메일</option></select></div>
-          <div class="fld"><label for="f-mail">이메일 <i>(선택)</i></label><input id="f-mail" name="이메일" type="email" autocomplete="email" placeholder="메일로 받을 때"></div>
-          <div class="fld w2"><label for="f-memo">배송지·요청사항 <i>(선택)</i></label><input id="f-memo" name="요청사항" placeholder="예: 지하주차장 하차, 수량 상담 원함"></div>
+          <div class="fld mail"><label for="f-mail">이메일 *</label><input id="f-mail" name="이메일" type="email" required autocomplete="email" placeholder="견적서 받을 주소"></div>
+          <div class="fld w3"><label for="f-memo">배송지·요청사항 <i>(선택)</i></label><input id="f-memo" name="요청사항" placeholder="예: 지하주차장 하차, 수량 상담 원함"></div>
         </div>
         <label class="agree"><input type="checkbox" id="f-agree" name="개인정보동의" value="동의" required><span>견적 안내를 위해 기관·단지명·성함·연락처·이메일을 받는 데 동의합니다. <a href="privacy.html">개인정보 처리방침</a></span></label>
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -478,7 +477,7 @@ footer a{color:#fff}
       <div class="q-done" hidden tabindex="-1">
         <svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>
         <h2>요청을 받았습니다</h2>
-        <p>확인하는 대로 적어 주신 연락처로 견적서를 보내 드립니다.</p>
+        <p>확인하는 대로 적어 주신 이메일로 견적서를 보내 드립니다.</p>
         <p class="q-alt"><button type="button" class="btn btn-line btn-sm" data-again>새 요청서 쓰기</button></p>
       </div>
     </div>
@@ -547,7 +546,7 @@ footer a{color:#fff}
         <h3 id="flow-title">견적부터 배송까지</h3>
         <ol class="steps" role="list">
           <li class="step"><span class="no">1</span><div><b>견적 요청</b><p>요청서·이메일로 기관명·수량</p></div><img src="img/step-office.jpg" width="900" height="675" alt="" loading="lazy"></li>
-          <li class="step"><span class="no">2</span><div><b>견적서 받기</b><p>카톡·문자·이메일, 그날 단가</p></div><img src="img/step-quote.jpg" width="900" height="675" alt="" loading="lazy"></li>
+          <li class="step"><span class="no">2</span><div><b>견적서 받기</b><p>이메일로, 그날 단가 기준</p></div><img src="img/step-quote.jpg" width="900" height="675" alt="" loading="lazy"></li>
           <li class="step"><span class="no">3</span><div><b>현장으로 배송</b><p>창고에서 청사·단지로, 하차 협의</p></div><img src="img/step-delivery.jpg" width="900" height="675" alt="" loading="lazy"></li>
         </ol>
         <div class="has">
@@ -785,7 +784,7 @@ var SITE = {
   FREE_SHIP: 0,
 
   MAIL_SUBJECT: '제설제 견적 요청',
-  MAIL_BODY: '기관·단지명:\n담당자 성함:\n연락처(견적서 받을 번호):\n필요 수량(제품·포):\n배송 받을 곳(하차 위치):\n견적서 받을 방법(카카오톡·문자·이메일):\n'
+  MAIL_BODY: '기관·단지명:\n담당자 성함:\n연락처(배송 협의용):\n필요 수량(제품·포):\n배송 받을 곳(하차 위치):\n'
 };
 
 (function(){
@@ -996,13 +995,12 @@ var SITE = {
       if (!ok && !bad) bad = i;
     });
     var m = form['이메일'];
-    if (form['받을방법'].value === '이메일' && !m.value.trim()) { m.setAttribute('aria-invalid', 'true'); bad = bad || m; }
     if (m.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(m.value)) { m.setAttribute('aria-invalid', 'true'); bad = bad || m; }
     var ag = document.getElementById('f-agree');
     if (!ag.checked) bad = bad || ag;
     if (bad) {
       msg.className = 'q-msg err';
-      msg.textContent = bad.id === 'f-agree' ? '개인정보 수집에 동의해 주세요.' : bad.id === 'f-tel' ? '연락처를 숫자 9자리 이상으로 적어 주세요.' : bad.id === 'f-mail' ? '이메일로 받으시려면 이메일 주소를 정확히 적어 주세요.' : '별표(*) 항목을 적어 주세요.';
+      msg.textContent = bad.id === 'f-agree' ? '개인정보 수집에 동의해 주세요.' : bad.id === 'f-tel' ? '연락처를 숫자 9자리 이상으로 적어 주세요.' : bad.id === 'f-mail' ? '견적서를 받으실 이메일 주소를 정확히 적어 주세요.' : '별표(*) 항목을 적어 주세요.';
       bad.focus(); return;
     }
     if (!val('FORM_ENDPOINT')) { location.href = mailto('[제설제 견적 요청] ' + form['기관·단지명'].value, formText()); return; }
