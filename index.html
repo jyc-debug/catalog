@@ -278,6 +278,10 @@ html[data-gate-b="2"] .prod.b .tagline{background:var(--green)}
 .c-acts .btn-sm{min-height:42px;padding:0 12px}
 .c-row .foot{display:block}
 .copied{font-size:var(--fs-cap);font-weight:700;color:var(--ok);align-self:center}
+/* 복사 알림 — 이메일 복사 버튼을 누르면 화면 아래에 잠깐 뜸 (옆에 .copied 칸이 없는 버튼용) */
+.toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:250;max-width:calc(100% - 32px);padding:11px 18px;border-radius:6px;background:var(--navy);color:#fff;font-size:var(--fs-cap);font-weight:700;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+.q-alt button{background:none;border:0;padding:4px 2px;color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .badge{display:inline-block;font-size:var(--fs-cap);font-weight:700;color:#7A4B00;background:#FFF3D6;border-radius:4px;padding:2px 8px;margin-left:6px;vertical-align:2px}
 .map{margin-top:10px;border-radius:8px;overflow:hidden;border:1px solid var(--line);height:220px;background:var(--ice)}
 .map iframe{width:100%;height:100%;border:0}
@@ -420,7 +424,7 @@ footer a{color:#fff}
       <a href="#guide">사용 안내</a>
       <a href="#contact">문의·위치</a>
     </nav>
-    <a class="btn btn-line btn-sm" data-mail href="mailto:jyc@visiononai.co.kr"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>이메일</a>
+    <button type="button" class="btn btn-line btn-sm" data-copy="jyc@visiononai.co.kr" data-copied="이메일 주소(jyc@visiononai.co.kr)를 복사했습니다"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>메일 복사</button>
     <a class="btn btn-blue" href="#quote" data-go-quote><svg class="ico" aria-hidden="true"><use href="#i-edit"/></svg>견적 요청</a>
   </div>
 </header>
@@ -442,7 +446,7 @@ footer a{color:#fff}
       <p class="lead">제설제 두 가지를 20kg 포대로 기관·단지까지 배송합니다. <span class="nb">견적 요청서에</span> 기관·단지명과 수량을 남겨 주시면 <span class="nb">공급자 정보·부가세가</span> 적힌 견적서를 이메일로 보내 드립니다.</p>
       <div class="btns">
         <a class="btn btn-white" href="#products"><svg class="ico" aria-hidden="true"><use href="#i-package"/></svg>제품 2종 보기</a>
-        <a class="btn btn-ghost" data-mail href="mailto:jyc@visiononai.co.kr"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>이메일 보내기</a>
+        <button type="button" class="btn btn-ghost" data-copy="jyc@visiononai.co.kr" data-copied="이메일 주소(jyc@visiononai.co.kr)를 복사했습니다"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>메일 복사</button>
         <a class="btn btn-ghost" href="#contact"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>오시는 길</a>
       </div>
       <ul class="facts" role="list">
@@ -453,7 +457,7 @@ footer a{color:#fff}
     </div>
 
     <!-- 견적 요청서 — 보내면 SITE.FORM_ENDPOINT(Formspree)로 접수되어 회사 메일로 옵니다.
-         보내기에 실패하면 같은 내용으로 이메일 쓰기 버튼이 나타납니다. -->
+         보내기에 실패하면 '적은 내용 복사'·'메일 주소 복사' 버튼이 나타납니다. -->
     <div class="qcard" id="quote">
       <form id="qform" novalidate>
         <h2>빠른 견적 요청</h2>
@@ -471,7 +475,7 @@ footer a{color:#fff}
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn btn-blue q-submit" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-edit"/></svg>견적 요청 보내기</button>
         <p class="q-msg" role="status" aria-live="polite"></p>
-        <p class="q-alt">요청서 대신 <a data-mail href="mailto:jyc@visiononai.co.kr">이메일로 보내기</a></p>
+        <p class="q-alt">요청서 대신 이메일(jyc@visiononai.co.kr)로 보내셔도 됩니다 <button type="button" data-copy="jyc@visiononai.co.kr" data-copied="이메일 주소(jyc@visiononai.co.kr)를 복사했습니다">메일 복사</button></p>
       </form>
       <div class="q-done" hidden tabindex="-1">
         <svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>
@@ -659,9 +663,7 @@ footer a{color:#fff}
           <div class="c-row"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg></span>
             <div><dt>이메일</dt><dd><b>jyc@visiononai.co.kr</b>
               <div class="c-acts">
-                <a class="btn btn-line btn-sm" data-mail href="mailto:jyc@visiononai.co.kr">메일 앱</a>
-                <a class="btn btn-line btn-sm" data-gmail href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=jyc@visiononai.co.kr" target="_blank" rel="noopener">Gmail<span class="sr"> 웹메일로 쓰기 (새 창)</span></a>
-                <button type="button" class="btn btn-line btn-sm" data-copy="jyc@visiononai.co.kr"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>복사<span class="sr"> (이메일 주소)</span></button>
+                <button type="button" class="btn btn-line btn-sm" data-copy="jyc@visiononai.co.kr"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>메일 복사</button>
                 <span class="copied" role="status"></span>
               </div></dd></div></div>
           <div class="c-row"><span class="c-ic"><svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg></span>
@@ -700,7 +702,7 @@ footer a{color:#fff}
         <dt data-mailorder-row>통신판매업</dt><dd data-mailorder-row class="num"><span data-mailorder>신고 확인 중</span></dd>
         <dt>주소</dt><dd>서울 마포구 월드컵북로 402, 925A호 (상암동, KGIT센터)</dd>
         <dt>전화</dt><dd><span data-tel-slot>대표전화 개통 준비 중</span></dd>
-        <dt>이메일</dt><dd><a data-mail href="mailto:jyc@visiononai.co.kr">jyc@visiononai.co.kr</a></dd>
+        <dt>이메일</dt><dd>jyc@visiononai.co.kr</dd>
       </dl>
       <div class="broker" data-role="broker" hidden>
         <p>보아(V.o.A)는 통신판매중개자이며 거래 당사자가 아닙니다. 판매자 정보는 아래와 같습니다.</p>
@@ -726,7 +728,7 @@ footer a{color:#fff}
 <!-- ═══ 휴대폰 하단 버튼 띠 ═══ 견적 요청서가 화면에 보이는 동안은 숨김 -->
 <nav class="mbar" aria-label="빠른 문의">
   <a class="btn btn-blue" href="#quote" data-go-quote><svg class="ico" aria-hidden="true"><use href="#i-edit"/></svg>견적 요청</a>
-  <a class="btn btn-line" data-mail href="mailto:jyc@visiononai.co.kr"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>이메일</a>
+  <button type="button" class="btn btn-line" data-copy="jyc@visiononai.co.kr" data-copied="이메일 주소(jyc@visiononai.co.kr)를 복사했습니다" data-mbar-mail><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>메일 복사</button>
   <a class="btn btn-line" href="#contact"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>위치</a>
 </nav>
 
@@ -783,10 +785,7 @@ var SITE = {
   MAILORDER_NO: '', MAILORDER_EXEMPT: false,
   TRADE_ROLE: 'seller',          /* 2026-11-12 확정: 공급자·세금계산서 발행 = (주)비전온에이아이 (판매자) */
   SELLER_NAME: '', SELLER_CEO: '', SELLER_BIZNO: '', SELLER_MAILORDER: '', SELLER_ADDR: '',
-  FREE_SHIP: 0,
-
-  MAIL_SUBJECT: '제설제 견적 요청',
-  MAIL_BODY: '기관·단지명:\n담당자 성함:\n연락처(배송 협의용):\n필요 수량(제품·포):\n배송 받을 곳(하차 위치):\n'
+  FREE_SHIP: 0
 };
 
 (function(){
@@ -799,12 +798,19 @@ var SITE = {
   var issues = [];
   root.classList.add('js');
 
-  /* ── 이메일 링크 (제목·본문 틀) + Gmail 웹 쓰기 ── */
+  /* ── 이메일: 버튼은 모두 '주소 복사' 방식 (2026-11-13)
+     mailto 링크는 PC에 메일 프로그램이 없으면 'mailto 링크를 열 앱 선택' 창만 떠서 없앴습니다.
+     mailto()는 FORM_ENDPOINT 를 비웠을 때의 대체 동작에만 남겨 둠 ── */
   function mailto(subject, body){ return 'mailto:' + EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body); }
-  $('a[data-mail]').forEach(function(a){ a.href = mailto(SITE.MAIL_SUBJECT, SITE.MAIL_BODY); });
-  $('a[data-gmail]').forEach(function(a){ a.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + EMAIL + '&su=' + encodeURIComponent(SITE.MAIL_SUBJECT) + '&body=' + encodeURIComponent(SITE.MAIL_BODY); });
 
-  /* ── 복사 버튼 ── */
+  /* ── 복사 버튼 (옆에 .copied 칸이 있으면 거기에, 없으면 화면 아래 알림으로 '복사했습니다') ── */
+  var toast = document.createElement('div'), toastTimer;
+  toast.className = 'toast'; toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite');
+  document.body.appendChild(toast);
+  function say(st, text){
+    st.textContent = text;
+    if (st === toast) { toast.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(function(){ toast.classList.remove('on'); toast.textContent = ''; }, 3500); }
+  }
   function copyText(t){
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t);
     return new Promise(function(res, rej){
@@ -814,10 +820,11 @@ var SITE = {
     });
   }
   $('[data-copy]').forEach(function(btn){
-    var st = btn.parentNode.querySelector('.copied'), timer;
+    var st = btn.parentNode.querySelector('.copied') || toast, timer;
     btn.addEventListener('click', function(){
-      copyText(btn.getAttribute('data-copy')).then(function(){ st.textContent = '복사했습니다'; }, function(){ st.textContent = '복사하지 못했습니다'; });
-      clearTimeout(timer); timer = setTimeout(function(){ st.textContent = ''; }, 4000);
+      var t = btn.getAttribute('data-copy');
+      copyText(t).then(function(){ say(st, btn.getAttribute('data-copied') || '복사했습니다'); }, function(){ say(st, '복사하지 못했습니다. ' + t + ' 를 직접 적어 주세요'); });
+      if (st !== toast) { clearTimeout(timer); timer = setTimeout(function(){ st.textContent = ''; }, 4000); }
     });
   });
 
@@ -844,8 +851,8 @@ var SITE = {
     el.innerHTML = telOn ? '<a class="tel" href="tel:' + digits + '">' + esc(tel) + '</a>' : '<span class="pend">대표전화 개통 준비 중</span>';
   });
   if (telOn) {
-    var mb = document.querySelector('.mbar a[data-mail]');
-    if (mb) { mb.href = 'tel:' + digits; mb.removeAttribute('data-mail'); mb.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>전화'; }
+    var mb = document.querySelector('.mbar [data-mbar-mail]');   /* 전화가 개통되면 휴대폰 아래 띠의 '이메일 복사' 자리를 '전화'로 */
+    if (mb) { var ta = document.createElement('a'); ta.className = mb.className; ta.href = 'tel:' + digits; ta.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>전화'; mb.parentNode.replaceChild(ta, mb); }
   }
 
   /* ── 날짜 읽기 (YYYY.MM.DD) ── */
@@ -988,7 +995,13 @@ var SITE = {
   }
   function fail(text){
     msg.className = 'q-msg err';
-    msg.innerHTML = esc(text) + ' <a href="' + mailto('[제설제 견적 요청] ' + (form['기관·단지명'].value || ''), formText()) + '">같은 내용으로 이메일 쓰기</a>';
+    msg.innerHTML = esc(text) + ' 적으신 내용을 복사해 ' + esc(EMAIL) + ' 로 메일 보내 주세요. <button type="button" class="btn btn-line btn-sm" data-copy-form>적은 내용 복사</button> <button type="button" class="btn btn-line btn-sm" data-copy-addr>메일 복사</button>';
+    msg.querySelector('[data-copy-form]').addEventListener('click', function(){
+      copyText('[제설제 견적 요청]\n' + formText()).then(function(){ say(toast, '적으신 내용을 복사했습니다. 메일 본문에 붙여 넣어 주세요'); }, function(){ say(toast, '복사하지 못했습니다'); });
+    });
+    msg.querySelector('[data-copy-addr]').addEventListener('click', function(){
+      copyText(EMAIL).then(function(){ say(toast, '이메일 주소(' + EMAIL + ')를 복사했습니다'); }, function(){ say(toast, '복사하지 못했습니다'); });
+    });
   }
   form.addEventListener('submit', function(e){
     e.preventDefault();
@@ -1014,7 +1027,7 @@ var SITE = {
     fd.append('접수경로', '제설제 카탈로그 홈페이지');
     btn.disabled = true; msg.className = 'q-msg'; msg.textContent = '보내는 중입니다…';
     /* 두 곳에 동시에 보냅니다: ① Formspree → 회사 메일 알림  ② SHEET_API → 구글시트 '문의목록' 탭
-       한 곳만 성공해도 접수된 것으로 봅니다 (둘 다 실패하면 '같은 내용으로 이메일 쓰기' 안내) */
+       한 곳만 성공해도 접수된 것으로 봅니다 (둘 다 실패하면 '적은 내용 복사' 안내) */
     var post = function(url, opt, ms, json){
       var ctl = window.AbortController ? new AbortController() : null;
       if (ctl) { opt.signal = ctl.signal; setTimeout(function(){ ctl.abort(); }, ms); }
