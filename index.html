@@ -344,13 +344,10 @@ footer a{color:#fff}
   .f-grid > .fld:nth-child(-n+3),.f-grid .w2,.f-grid .mail{grid-column:1 / -1}
   .sec{padding:44px 0}
   .sec-hd{display:block;margin-bottom:20px}
-  /* 제품 두 장은 옆으로 밀어 넘기기 (세로 길이 절반) */
-  .p-grid{display:flex;align-items:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px;padding:4px 16px 12px;scrollbar-width:none}
-  .p-grid::-webkit-scrollbar{display:none}
-  .prod{flex:0 0 86%;scroll-snap-align:center}
+  /* 제품 두 장·주문 절차는 위아래로 차례대로 (옆으로 밀어야 보이는 칸 없음 — 한눈에 다 보이게) */
+  .p-grid{grid-template-columns:1fr;gap:14px}
   .prod:hover{transform:none}
-  .flow{flex:0 0 86%;scroll-snap-align:center}
-  .swipe-hint{display:block!important}
+  .media{aspect-ratio:16/9}
   .step{grid-template-columns:44px 1fr 72px}
   .step img{width:72px;height:56px}
   .has ul{grid-template-columns:1fr}
@@ -359,7 +356,9 @@ footer a{color:#fff}
   .place{display:grid;grid-template-columns:38% 1fr;gap:12px;align-items:start}
   .place img{margin:0;aspect-ratio:1}
   .rules,.docbox{grid-template-columns:1fr}
-  .tabs button{flex:0 0 auto;padding:0 14px}
+  /* 탭 4개는 2줄×2칸으로 — 옆으로 밀지 않아도 네 개가 다 보이게 */
+  .tabs{display:grid;grid-template-columns:1fr 1fr;overflow:visible}
+  .tabs button{min-height:50px;padding:0 8px;white-space:normal}
   .f-grid2{grid-template-columns:1fr}
   .mbar{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:150;padding:8px 12px calc(8px + env(safe-area-inset-bottom));
     background:#fff;border-top:1px solid var(--line);box-shadow:0 -6px 18px -10px rgba(10,33,66,.35);transition:transform .25s var(--ease)}
@@ -367,7 +366,6 @@ footer a{color:#fff}
   .mbar.off{transform:translateY(110%)}
   body{padding-bottom:76px}
 }
-.swipe-hint{display:none;margin-top:4px}
 /* 낮은 화면(휴대폰 가로·200% 확대): 고정 해제 */
 @media (max-height:520px){
   .hd{position:static}main{padding-top:0}.mbar{position:static}body{padding-bottom:0}
@@ -562,7 +560,6 @@ footer a{color:#fff}
         <div class="btn-row"><a class="btn btn-white" href="#quote" data-go-quote>견적 요청서 쓰기</a></div>
       </aside>
     </div>
-    <p class="foot swipe-hint">옆으로 밀면 다음 제품과 주문 절차가 보입니다.</p>
     <p class="foot p-note rv">제품 정보는 서류로 확인한 것만 적습니다. 성분은 물질안전보건자료(MSDS), 원산지·제조사는 공급처 확인서, 부식 관련 표기는 공인기관 시험성적서를 받은 뒤 적습니다. 사진은 연출 이미지이며 실물과 다를 수 있습니다.</p>
 
     <!-- 사실 비교표: 제품 B의 형태(B_FORM)와 주원료(B_INGREDIENT)를 모두 채우면 나타납니다 -->
