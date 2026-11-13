@@ -79,7 +79,7 @@ h1,h2,h3{font-weight:700;color:var(--navy);letter-spacing:-.02em;text-wrap:balan
 .btn-white{background:#fff;color:var(--navy)}
 .btn-white:hover{background:var(--blue-tint)}
 .btn-white .ico{color:var(--blue)}
-.btn-ghost{border-color:rgba(255,255,255,.75);color:#fff}
+.btn-ghost{border-color:rgba(255,255,255,.75);color:#fff;background:transparent} /* <button>은 기본 회색 바탕이 깔려서 투명으로 지정 */
 .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
 .btn-line{border-color:var(--blue);color:var(--blue);background:#fff}
 .btn-line:hover{background:var(--blue-tint)}
@@ -124,7 +124,7 @@ main{padding-top:var(--hd)}
 .facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px 28px;margin-top:34px;padding-top:24px;border-top:1px solid rgba(185,208,230,.3)}
 .facts li{display:flex;align-items:center;gap:10px;font-weight:600;color:#fff}
 .facts .ico{color:#9FC3F2}
-.photo-tag{position:absolute;right:20px;bottom:14px;font-size:var(--fs-cap);color:rgba(255,255,255,.85);text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.photo-tag{position:absolute;right:20px;bottom:14px;font-size:var(--fs-cap);color:#fff;background:rgba(6,22,46,.72);padding:3px 9px;border-radius:4px} /* 밝은 눈 사진 위에서도 읽히게 남색 바탕 */
 
 /* 견적 요청 카드 (첫 화면 오른쪽) */
 .qcard{background:#fff;color:var(--ink);border-radius:10px;padding:26px 26px 22px;box-shadow:0 24px 60px -20px rgba(0,0,0,.55)}
@@ -232,14 +232,14 @@ html[data-gate-b="2"] .prod.b .tagline{background:var(--green)}
 .tbl .tbd{color:var(--sub)}
 
 /* ═══ 3. 사용 안내(탭) + 문의·위치 ═══ */
-.g-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px;align-items:start}
+.g-grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:24px;align-items:stretch} /* 왼쪽 탭 칸과 오른쪽 문의 칸 아래 끝을 맞춤 */
 .panel{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .tabs{display:flex;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tabs button{flex:1 0 auto;min-height:56px;padding:0 18px;border:0;background:none;font-weight:700;color:var(--sub);border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s}
 .tabs button[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--blue)}
 .tabs button:hover{color:var(--navy)}
-.tp{padding:22px 24px 24px;min-height:452px}
+.tp{padding:22px 24px 24px;min-height:525px} /* 가장 긴 탭(사용·보관 5가지)에 맞춤 — 탭을 바꿔도 높이 그대로 */
 .js .tp{animation:fadein .35s var(--ease)}
 @keyframes fadein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .places{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -247,11 +247,13 @@ html[data-gate-b="2"] .prod.b .tagline{background:var(--green)}
 .place h3{font-size:var(--fs-lead);line-height:1.35;margin-bottom:6px}
 .place p{font-size:var(--fs-cap);line-height:1.6}
 .place .pick{font-weight:700;color:var(--navy);margin-bottom:4px}
-.rules{counter-reset:n;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
-.rules li{counter-increment:n;position:relative;padding-left:42px}
-.rules li::before{content:counter(n);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:6px;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:var(--fs-cap)}
-.rules b{display:block;color:var(--navy);line-height:1.4;margin-bottom:2px}
-.rules span{display:block;font-size:var(--fs-cap);line-height:1.55}
+/* 사용·보관 원칙: 한 줄에 [번호 | 제목 | 설명] — 2열로 놓으면 칸 높이가 들쭉날쭉해서 표처럼 한 줄씩 배치 */
+.rules{counter-reset:n}
+.rules li:first-child{padding-top:4px}
+.rules li{counter-increment:n;display:grid;grid-template-columns:28px 210px 1fr;column-gap:18px;align-items:start;padding:15px 0;border-bottom:1px solid var(--line)}
+.rules li::before{content:counter(n);width:28px;height:28px;border-radius:6px;background:var(--navy);color:#fff;font-weight:700;display:grid;place-items:center;font-size:15px;line-height:1}
+.rules b{color:var(--navy);line-height:28px}
+.rules span{font-size:var(--fs-cap);line-height:1.6;padding-top:2px}
 .tp .foot{margin-top:16px}
 .docbox{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .docbox div{background:var(--ice);border-radius:8px;padding:16px 18px}
@@ -275,13 +277,13 @@ html[data-gate-b="2"] .prod.b .tagline{background:var(--green)}
 .c-row dt{font-size:var(--fs-cap);font-weight:700;color:var(--sub)}
 .c-row dd > b{display:block;font-size:var(--fs-lead);color:var(--navy);line-height:1.35;font-variant-numeric:tabular-nums}
 .c-acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.c-acts .btn-sm{min-height:42px;padding:0 12px}
+.c-acts .btn-sm{min-height:44px;padding:0 12px}
 .c-row .foot{display:block}
 .copied{font-size:var(--fs-cap);font-weight:700;color:var(--ok);align-self:center}
 /* 복사 알림 — 이메일 복사 버튼을 누르면 화면 아래에 잠깐 뜸 (옆에 .copied 칸이 없는 버튼용) */
 .toast{position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:250;max-width:calc(100% - 32px);padding:11px 18px;border-radius:6px;background:var(--navy);color:#fff;font-size:var(--fs-cap);font-weight:700;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .2s}
 .toast.on{opacity:1}
-.q-alt button{background:none;border:0;padding:4px 2px;color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+.q-alt button{background:none;border:0;min-height:44px;padding:10px 6px;color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .badge{display:inline-block;font-size:var(--fs-cap);font-weight:700;color:#7A4B00;background:#FFF3D6;border-radius:4px;padding:2px 8px;margin-left:6px;vertical-align:2px}
 .map{margin-top:10px;border-radius:8px;overflow:hidden;border:1px solid var(--line);height:220px;background:var(--ice)}
 .map iframe{width:100%;height:100%;border:0}
@@ -308,6 +310,7 @@ footer a{color:#fff}
 /* ═══ 넓은 화면: 각 구역을 한 화면 높이에 맞춤 ═══ */
 @media (min-width:1101px) and (min-height:700px){
   .sec{min-height:calc(100svh - var(--hd));display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+  .sec>.wrap{width:100%} /* 세로 가운데 정렬(flex) 안에서 폭이 내용 따라 줄지 않게 — 탭을 바꿔도 칸 폭 고정 */
 }
 /* 높이가 낮은 넓은 화면(노트북 768px 등): 사진 비율을 줄여 한 화면 유지 */
 @media (min-width:1101px) and (max-height:860px){
@@ -330,6 +333,7 @@ footer a{color:#fff}
   .p-grid{grid-template-columns:1fr 1fr}
   .flow{grid-column:1 / -1}
   .g-grid{grid-template-columns:1fr}
+  .tp{min-height:0} /* 위아래로 쌓이면 고정 높이가 빈칸만 만듦 */
 }
 /* ═══ 휴대폰 ═══ */
 @media (max-width:760px){
@@ -359,7 +363,9 @@ footer a{color:#fff}
   .places{grid-template-columns:1fr;gap:14px}
   .place{display:grid;grid-template-columns:38% 1fr;gap:12px;align-items:start}
   .place img{margin:0;aspect-ratio:1}
-  .rules,.docbox{grid-template-columns:1fr}
+  .docbox{grid-template-columns:1fr}
+  .rules li{grid-template-columns:28px 1fr;row-gap:4px;column-gap:12px;padding:14px 0}
+  .rules span{grid-column:2;padding-top:0}
   /* 탭 4개는 2줄×2칸으로 — 옆으로 밀지 않아도 네 개가 다 보이게 */
   .tabs{display:grid;grid-template-columns:1fr 1fr;overflow:visible}
   .tabs button{min-height:50px;padding:0 8px;white-space:normal}
@@ -441,13 +447,13 @@ footer a{color:#fff}
   <canvas id="snow" aria-hidden="true"></canvas>
   <div class="hero-in">
     <div>
-      <p class="eyebrow">서울·경기·인천 관공서·공공기관 · 아파트 관리사무소</p>
-      <h1 id="hero-title">관공서·아파트 제설제 20kg,<br><em>결재용 견적서</em>로 받아 보세요</h1>
-      <p class="lead">제설제 두 가지를 20kg 포대로 기관·단지까지 배송합니다. <span class="nb">견적 요청서에</span> 기관·단지명과 수량을 남겨 주시면 <span class="nb">공급자 정보·부가세가</span> 적힌 견적서를 이메일로 보내 드립니다.</p>
+      <p class="eyebrow"><span>서울·경기·인천 관공서·공공기관 · <span class="nb">아파트 관리사무소</span></span></p>
+      <h1 id="hero-title">관공서·아파트 제설제 20kg,<br><em>결재용 견적서</em>로 <span class="nb">받아 보세요</span></h1>
+      <p class="lead">제설제 두 가지를 20kg 포대로 <span class="nb">기관·단지까지</span> 배송합니다. <span class="nb">견적 요청서에</span> 기관·단지명과 수량을 남겨 주시면 <span class="nb">공급자 정보·부가세가</span> 적힌 견적서를 이메일로 보내 드립니다.</p>
       <div class="btns">
         <a class="btn btn-white" href="#products"><svg class="ico" aria-hidden="true"><use href="#i-package"/></svg>제품 2종 보기</a>
         <button type="button" class="btn btn-ghost" data-copy="jyc@visiononai.co.kr" data-copied="이메일 주소(jyc@visiononai.co.kr)를 복사했습니다"><svg class="ico" aria-hidden="true"><use href="#i-copy"/></svg>메일 복사</button>
-        <a class="btn btn-ghost" href="#contact"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>오시는 길</a>
+        <a class="btn btn-ghost" href="#contact"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>문의·위치</a>
       </div>
       <ul class="facts" role="list">
         <li><svg class="ico" aria-hidden="true"><use href="#i-package"/></svg>20kg 포대 단위</li>
@@ -471,7 +477,7 @@ footer a{color:#fff}
           <div class="fld mail"><label for="f-mail">이메일 *</label><input id="f-mail" name="이메일" type="email" required autocomplete="email" placeholder="견적서 받을 주소"></div>
           <div class="fld w3"><label for="f-memo">배송지·요청사항 <i>(선택)</i></label><input id="f-memo" name="요청사항" placeholder="예: 지하주차장 하차, 수량 상담 원함"></div>
         </div>
-        <label class="agree"><input type="checkbox" id="f-agree" name="개인정보동의" value="동의" required><span>견적 안내를 위해 기관·단지명·성함·연락처·이메일을 받는 데 동의합니다. <a href="privacy.html">개인정보 처리방침</a></span></label>
+        <label class="agree"><input type="checkbox" id="f-agree" name="개인정보동의" value="동의" required><span>견적 안내를 위해 기관·단지명·성함·연락처·이메일을 받는 데 동의합니다(보관 1년). 동의하지 않으시면 이메일로 요청하실 수 있습니다. <a href="privacy.html">개인정보 처리방침</a></span></label>
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button class="btn btn-blue q-submit" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-edit"/></svg>견적 요청 보내기</button>
         <p class="q-msg" role="status" aria-live="polite"></p>
@@ -548,16 +554,16 @@ footer a{color:#fff}
       <aside class="flow dark rv d2" id="products-flow" aria-labelledby="flow-title">
         <h3 id="flow-title">견적부터 배송까지</h3>
         <ol class="steps" role="list">
-          <li class="step"><span class="no">1</span><div><b>견적 요청</b><p>요청서·이메일로 기관명·수량</p></div><img src="img/step-office.jpg" width="900" height="675" alt="" loading="lazy"></li>
-          <li class="step"><span class="no">2</span><div><b>견적서 받기</b><p>이메일로, 그날 단가 기준</p></div><img src="img/step-quote.jpg" width="900" height="675" alt="" loading="lazy"></li>
-          <li class="step"><span class="no">3</span><div><b>현장으로 배송</b><p>창고에서 청사·단지로, 하차 협의</p></div><img src="img/step-delivery.jpg" width="900" height="675" alt="" loading="lazy"></li>
+          <li class="step"><span class="no">1</span><div><b>견적 요청</b><p>요청서·이메일로 <span class="nb">기관명·수량</span></p></div><img src="img/step-office.jpg" width="900" height="675" alt="" loading="lazy"></li>
+          <li class="step"><span class="no">2</span><div><b>견적서 받기</b><p>이메일로, <span class="nb">그날 단가 기준</span></p></div><img src="img/step-quote.jpg" width="900" height="675" alt="" loading="lazy"></li>
+          <li class="step"><span class="no">3</span><div><b>현장으로 배송</b><p>창고에서 <span class="nb">청사·단지로,</span> <span class="nb">하차 협의</span></p></div><img src="img/step-delivery.jpg" width="900" height="675" alt="" loading="lazy"></li>
         </ol>
         <div class="has">
           <b>견적서에 적어 드리는 것</b>
           <ul role="list">
             <li>품명·규격·수량·단가</li><li>공급가액·부가세·합계</li>
             <li>배송비·배송 일정·하차</li><li>취소·반품·교환 조건</li>
-            <li>견적 작성일<span data-price="hold" hidden>·유효기간</span></li><li>공급자 상호·사업자번호</li>
+            <li>견적 작성일<span data-price="hold" hidden>·유효기간</span></li><li><span class="nb">공급자 상호</span>·<span class="nb">사업자번호</span></li>
           </ul>
           <p class="foot" data-free-ship hidden style="color:var(--on-navy);margin-top:8px">40포 이상은 배송비가 없습니다.</p>
         </div>
@@ -615,7 +621,7 @@ footer a{color:#fff}
               <p class="pick" data-rec hidden><span data-a-name><span class="nm">염화칼슘 비드 20kg</span></span></p>
               <p>눈을 먼저 밀어 낸 뒤 바퀴 자국과 보행로에 고르게 뿌리고, 녹은 뒤 남은 알갱이는 쓸어 냅니다.</p></div></article>
             <article class="place"><img src="img/place-steps.jpg" width="1120" height="840" loading="lazy" alt="연출 이미지: 모서리에 얼음이 남은 동 출입구 계단과 난간"><div>
-              <h3>주출입구 계단·경사 보도</h3>
+              <h3>주출입구 <span class="nb">계단·경사 보도</span></h3>
               <p class="pick" data-rec hidden><span data-a-name><span class="nm">염화칼슘 비드 20kg</span></span></p>
               <p>미끄러짐 사고가 잦은 곳입니다. 디딤판 위주로 뿌리고, 난간·철재 주변에는 필요한 만큼만 뿌립니다.</p></div></article>
             <article class="place"><img src="img/place-path.jpg" width="1120" height="840" loading="lazy" alt="연출 이미지: 눈 덮인 화단 사이 단지 산책로"><div>
@@ -627,13 +633,13 @@ footer a{color:#fff}
 
         <div class="tp" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
           <ol class="rules" role="list">
-            <li><b>눈을 먼저 치웁니다</b><span>넉가래로 눈을 먼저 밀어 내고, 남은 곳에만 조금 뿌립니다. 사용량은 포대의 사용법을 따릅니다.</span></li>
-            <li><b>나무·화단에서 먼 쪽에</b><span>제설제가 섞인 눈은 나무 밑에 쌓지 않습니다.</span></li>
-            <li><b>콘크리트·금속 주변은 필요한 만큼만</b><span>염화물은 콘크리트와 금속을 상하게 할 수 있어, 녹은 뒤 남은 알갱이는 쓸어 냅니다.</span></li>
-            <li><b>장갑과 보안경을 씁니다</b><span>피부·눈에 닿으면 물로 충분히 씻습니다. 어린이·반려동물이 닿지 않는 곳에 두고, 취급은 물질안전보건자료(MSDS)를 따릅니다.</span></li>
-            <li><b>남은 제품은 입구를 묶어 둡니다</b><span>공기 중 습기를 빨아들여 녹거나 굳으므로, 포대 입구를 묶어 습기 없는 곳에 둡니다.</span></li>
+            <li><b>눈 먼저 치우기</b><span>넉가래로 눈을 먼저 밀어 낸 뒤, 남은 얼음 위에만 뿌립니다. 사용량은 포대에 적힌 기준을 따릅니다.</span></li>
+            <li><b>나무·화단 피하기</b><span>제설제가 섞인 눈은 나무 밑이나 화단에 쌓지 않습니다.</span></li>
+            <li><b>남은 알갱이 쓸어 내기</b><span>염화물은 콘크리트와 금속을 상하게 할 수 있습니다. 눈이 녹은 뒤 남은 알갱이는 쓸어 냅니다.</span></li>
+            <li><b>장갑·보안경 착용</b><span>피부나 눈에 닿으면 물로 충분히 씻어 냅니다. 어린이·반려동물이 닿지 않는 곳에 두며, 자세한 취급 방법은 물질안전보건자료(MSDS)에 있습니다.</span></li>
+            <li><b>밀봉해 건조한 곳에 보관</b><span>습기를 빨아들이면 녹거나 굳습니다. 쓰고 남은 포대는 입구를 묶어 습기 없는 곳에 둡니다.</span></li>
           </ol>
-          <p class="foot">출처: 1·2 국립산림과학원 권고 / 3 염화물에 의한 콘크리트 박리·철근 부식 보도(뉴시스, 2024) / 4·5 국제화학물질안전카드 ICSC 1184 염화칼슘(ILO·WHO).</p>
+          <p class="foot">출처 · 1·2 국립산림과학원 권고 · 3 뉴시스(2024) 염화물에 의한 콘크리트 박리·철근 부식 보도 · 4·5 국제화학물질안전카드 ICSC 1184 염화칼슘(ILO·WHO)</p>
         </div>
 
         <div class="tp" role="tabpanel" id="p3" aria-labelledby="t3" tabindex="0" hidden>
@@ -648,7 +654,7 @@ footer a{color:#fff}
         <div class="tp faq" role="tabpanel" id="p4" aria-labelledby="t4" tabindex="0" hidden>
           <details><summary><span class="q">Q</span>견적서를 결재 서류에 붙여도 되나요?</summary><p class="a">공급자 정보, 부가세, 배송 조건을 적어 드립니다. 비교견적 요건은 기관의 계약 규정이나 단지 관리규약을 따릅니다.</p></details>
           <details><summary><span class="q">Q</span>관공서·공공기관도 구매할 수 있나요?</summary><p class="a">네. 세금계산서는 (주)비전온에이아이 명의로 발행하고, 견적서와 함께 사업자등록증 사본을 드립니다. 당사는 장애인기업 확인을 받은 기업이며, 확인서 사본도 요청하시면 드립니다.</p></details>
-          <details><summary><span class="q">Q</span>단가가 홈페이지에 없는 이유는요?</summary><p class="a">겨울에는 단가가 자주 바뀌어, 그날 기준 단가를 견적서로 안내합니다.</p></details>
+          <details><summary><span class="q">Q</span>단가는 왜 홈페이지에 없나요?</summary><p class="a">겨울에는 단가가 자주 바뀌어, 그날 기준 단가를 견적서로 안내합니다.</p></details>
           <details><summary><span class="q">Q</span>제설 도구(넉가래·제설함 등)도 파나요?</summary><p class="a" data-tools-off>지금은 제설제 두 가지만 공급합니다.</p><p class="a" data-tools hidden>제설함·넉가래·대나무비·눈삽·도로비를 제설제와 함께 견적서에 적어 드립니다.</p></details>
           <details data-show="any:2" hidden><summary><span class="q">Q</span>인증서나 성적서를 볼 수 있나요?</summary><p class="a">확인된 서류만 견적서와 함께 보내 드립니다.</p></details>
           <details><summary><span class="q">Q</span>건물 앞 보도도 제설해야 하나요?</summary><p class="a">자연재해대책법 제27조와 서울시 제설·제빙 조례는 건축물관리자가 건물 주변 보도·이면도로의 눈을 치우도록 정하고 있습니다. 서울시 안내에 따르면 보도는 건물 대지에 접한 구간 전체, 주거용 건물은 주출입구 쪽 대지 경계선에서 1m까지입니다. <span class="nb">경기·인천은</span> 시·군 조례에 따라 범위가 다릅니다. 조례에 과태료 조항은 없지만, 낙상 사고가 나면 민사상 관리 책임이 문제될 수 있습니다.</p></details>
@@ -681,7 +687,7 @@ footer a{color:#fff}
               <div class="map" id="mapbox" hidden></div>
             </dd></div></div>
         </dl>
-        <p class="reps"><b>영업 담당</b> 김종현 이사(서울·경기) · 김기한 이사(부천·인천)</p>
+        <p class="reps"><b>영업 담당</b> <span class="nb">김종현 이사(서울·경기)</span> · <span class="nb">김기한 이사(부천·인천)</span></p>
       </aside>
     </div>
   </div>
@@ -740,7 +746,7 @@ footer a{color:#fff}
      → '대표전화 개통 준비 중'이 실제 번호 링크로 바뀌고, 휴대폰 하단 띠의 '이메일'이 '전화'로 바뀝니다.
      ※ 자리표시(02-000-0000)이거나 TEL_READY가 false면 전화 링크를 만들지 않습니다.
 
-   [견적 요청서] FORM_ENDPOINT 로 보냅니다 (Formspree — VoA 홈페이지 문의 폼과 같은 계정, 받는 메일 crjung@visiononai.co.kr).
+   [견적 요청서] FORM_ENDPOINT 로 보냅니다 (Formspree — VoA 홈페이지 문의 폼과 같은 계정).
      다른 메일로 받으려면 Formspree에서 새 폼을 만들어 주소를 바꾸세요. 비우면 요청서가 '이메일 쓰기'로 바뀝니다.
      SHEET_API 로도 같은 내용을 보냅니다 → 구글시트 [보아 제설제 견적 관리]의 '문의목록' 탭 맨 위에 한 줄이 생깁니다.
      (받는 쪽: 그 시트의 Apps Script 웹 앱. 코드 원본: deicing-sales/out/sheet/apps-script-문의목록.gs)
@@ -782,7 +788,7 @@ var SITE = {
   TOOLS_VISIBLE: false,
   PRICE_HOLD: false,       /* 견적 유효기간 동안 단가 유지가 확정되면 true (견적서 항목에 '유효기간'이 보임) */
 
-  MAILORDER_NO: '', MAILORDER_EXEMPT: false,
+  MAILORDER_NO: '', MAILORDER_EXEMPT: true,   /* 2026-11-13 사용자 지시: 통신판매업 줄 숨김. 신고번호가 생기면 MAILORDER_NO에 넣고 false로 */
   TRADE_ROLE: 'seller',          /* 2026-11-12 확정: 공급자·세금계산서 발행 = (주)비전온에이아이 (판매자) */
   SELLER_NAME: '', SELLER_CEO: '', SELLER_BIZNO: '', SELLER_MAILORDER: '', SELLER_ADDR: '',
   FREE_SHIP: 0
@@ -916,7 +922,7 @@ var SITE = {
   $('[data-price="hold"]').forEach(function(el){ el.hidden = SITE.PRICE_HOLD !== true; });
 
   if (val('MAILORDER_NO')) $('[data-mailorder]').forEach(function(el){ el.textContent = val('MAILORDER_NO'); });
-  else issues.push('공개 전 미결: 통신판매업 신고번호(MAILORDER_NO) 또는 적용 제외(MAILORDER_EXEMPT)');
+  else if (SITE.MAILORDER_EXEMPT !== true) issues.push('공개 전 미결: 통신판매업 신고번호(MAILORDER_NO) 또는 적용 제외(MAILORDER_EXEMPT)');
   if (SITE.MAILORDER_EXEMPT === true) $('[data-mailorder-row]').forEach(function(el){ el.hidden = true; });
   var role = val('TRADE_ROLE');
   $('[data-role-title]').forEach(function(el){ el.textContent = role === 'seller' ? '판매자 정보' : role === 'broker' ? '사업자 정보 (통신판매중개자)' : '사업자 정보'; });
@@ -1059,7 +1065,7 @@ var SITE = {
     /* 지금 보고 있는 구역의 메뉴에 밑줄 */
     var navA = $('.nav a');
     var secIO = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) navA.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id); }); }); }, {rootMargin: '-45% 0px -50% 0px'});
-    ['products', 'guide'].forEach(function(id){ secIO.observe(document.getElementById(id)); });
+    ['top', 'products', 'guide'].forEach(function(id){ secIO.observe(document.getElementById(id)); });   /* top: 첫 화면에선 밑줄 모두 끔 */
     var bar = document.querySelector('.mbar');
     new IntersectionObserver(function(es){ bar.classList.toggle('off', es[0].isIntersecting); }, {threshold: .25}).observe(document.getElementById('quote'));
   }
