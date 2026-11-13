@@ -740,6 +740,9 @@ footer a{color:#fff}
 
    [견적 요청서] FORM_ENDPOINT 로 보냅니다 (Formspree — VoA 홈페이지 문의 폼과 같은 계정, 받는 메일 crjung@visiononai.co.kr).
      다른 메일로 받으려면 Formspree에서 새 폼을 만들어 주소를 바꾸세요. 비우면 요청서가 '이메일 쓰기'로 바뀝니다.
+     SHEET_API 로도 같은 내용을 보냅니다 → 구글시트 [보아 제설제 견적 관리]의 '문의목록' 탭 맨 위에 한 줄이 생깁니다.
+     (받는 쪽: 그 시트의 Apps Script 웹 앱. 코드 원본: deicing-sales/out/sheet/apps-script-문의목록.gs)
+     웹 앱을 새로 배포해 주소가 바뀌면 SHEET_API 한 줄만 바꾸면 됩니다. 비우면 메일로만 받습니다.
 
    [사진·영상] PHOTO_A / PHOTO_B: 제품 사진 파일. LOOP_A / LOOP_B: 제품 카드의 움직이는 영상(mp4) — 비우면 사진만 보임.
      실물 사진을 받으면 PHOTO_* 를 바꾸고 LOOP_* 를 '' 로, PHOTO_IS_REAL 을 true 로 (사진 위 '연출 이미지' 표시가 사라짐).
@@ -758,6 +761,7 @@ var SITE = {
   TEL_READY: false,
 
   FORM_ENDPOINT: 'https://formspree.io/f/mkodzwgn',
+  SHEET_API: 'https://script.google.com/macros/s/AKfycbxzvdhzj17yNUW9pBrTbvIJY6e6RfaLjmrncLkz9l4ExYbR1RTr_ZTNRY57cEep9nkO/exec',   /* 구글시트 '문의목록' 탭으로 쌓이는 곳 (Apps Script 웹 앱 URL, …/exec). 비우면 메일로만 받음 */
 
   PHOTO_A: 'img/product-a-bead.jpg',
   PHOTO_B: 'img/product-b-granule.jpg',
@@ -1009,13 +1013,26 @@ var SITE = {
     fd.append('_subject', '[제설제 견적 요청] ' + form['기관·단지명'].value + ' / ' + form['담당자'].value);
     fd.append('접수경로', '제설제 카탈로그 홈페이지');
     btn.disabled = true; msg.className = 'q-msg'; msg.textContent = '보내는 중입니다…';
-    fetch(val('FORM_ENDPOINT'), {method: 'POST', body: fd, headers: {'Accept': 'application/json'}})
-      .then(function(r){
-        btn.disabled = false;
-        if (r.ok) { form.hidden = true; done.hidden = false; done.focus(); form.reset(); msg.textContent = ''; }
-        else fail('보내지 못했습니다.');
-      })
-      .catch(function(){ btn.disabled = false; fail('인터넷 연결 문제로 보내지 못했습니다.'); });
+    /* 두 곳에 동시에 보냅니다: ① Formspree → 회사 메일 알림  ② SHEET_API → 구글시트 '문의목록' 탭
+       한 곳만 성공해도 접수된 것으로 봅니다 (둘 다 실패하면 '같은 내용으로 이메일 쓰기' 안내) */
+    var post = function(url, opt, ms, json){
+      var ctl = window.AbortController ? new AbortController() : null;
+      if (ctl) { opt.signal = ctl.signal; setTimeout(function(){ ctl.abort(); }, ms); }
+      return fetch(url, opt).then(function(r){
+        if (!r.ok) return false;
+        return json ? r.json().then(function(j){ return !!(j && j.ok); }) : true;   /* 시트는 {"ok":true} 로 답함 */
+      }).catch(function(){ return false; });
+    };
+    var sends = [post(val('FORM_ENDPOINT'), {method: 'POST', body: fd, headers: {'Accept': 'application/json'}}, 20000)];
+    if (val('SHEET_API')) {
+      var sp = new URLSearchParams(); fd.forEach(function(v, k){ sp.append(k, v); });   /* 구글 웹 앱은 이 형식을 칸별로 읽음 */
+      sends.push(post(val('SHEET_API'), {method: 'POST', body: sp}, 20000, true));
+    }
+    Promise.all(sends).then(function(res){
+      btn.disabled = false;
+      if (res.indexOf(true) >= 0) { form.hidden = true; done.hidden = false; done.focus(); form.reset(); msg.textContent = ''; }
+      else fail('인터넷 연결 문제로 보내지 못했습니다.');
+    });
   });
   form.addEventListener('input', function(e){ if (e.target.getAttribute('aria-invalid') === 'true') e.target.setAttribute('aria-invalid', 'false'); });
   document.querySelector('[data-again]').addEventListener('click', function(){ done.hidden = true; form.hidden = false; document.getElementById('f-apt').focus(); });
